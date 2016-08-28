@@ -21,6 +21,7 @@ class ReactTodo extends Component {
         initialRoute={{
           title: 'Emoji Todos',
           component: RootView,
+          rightButtonTitle: 'Add',
           barTintColor: '#FFF',
           tintColor: '#c92c5e',
           shadowHidden: false,
