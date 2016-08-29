@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
  AppRegistry,
@@ -19,7 +13,7 @@ class ReactTodo extends Component {
       <NavigatorIOS
         style={styles.navBar}
         initialRoute={{
-          title: 'Emoji Todos',
+          title: 'React Todos',
           component: RootView,
           rightButtonTitle: 'Add',
           barTintColor: '#FFF',
@@ -30,7 +24,6 @@ class ReactTodo extends Component {
     );
   }
 }
-
 
 var styles = StyleSheet.create({
   navBar: {
