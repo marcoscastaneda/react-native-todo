@@ -32,12 +32,12 @@ class ReactTodo extends Component {
         initialRoute={{
           title: 'React Todos',
           component: RootView,
-          rightButtonTitle: 'Add',
+          leftButtonTitle: 'Edit',
           barTintColor: '#FFF',
-          tintColor: '#c92c5e',
+          tintColor: '#cd9aaa',
           shadowHidden: false,
           titleTextColor: '#c92c5e',
-          onRightButtonPress: () => {
+          onLeftButtonPress: () => {
             this.refs.nav.navigator.push({
                            title: "Add Item",
                            component: AddItemView,

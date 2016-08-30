@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import ReactNative from 'react-native';
 const { StyleSheet, Text, View, TouchableHighlight} = ReactNative;
 
+const styles = require('../styles.js')
+
 class ActionButton extends Component {
   render() {
     return (
@@ -16,21 +18,5 @@ class ActionButton extends Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  actionText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  action: {
-    backgroundColor: '#c92c5e',
-    borderColor: 'transparent',
-    justifyContent: 'center',
-    height: 55
-  },
-});
 
 module.exports = ActionButton;

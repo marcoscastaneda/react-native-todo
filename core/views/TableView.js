@@ -10,11 +10,17 @@ import {
   Text
 } from 'react-native';
 
+const styles = require('../styles.js')
+
 var mockData = [
   {firstName: "John"},
   {firstName: "Lorem"},
   {firstName: "Ipsum"},
   {firstName: "Doe"},
+  {firstName: "Dell"},
+  {firstName: "Casey"},
+  {firstName: "Dan"},
+  {firstName: "Rob"},
 ];
 
 class TableView extends Component {
@@ -80,27 +86,5 @@ class TableView extends Component {
    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-  },
-  cell: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 60,
-  },
-  cellTitle: {
-    fontSize: 17,
-    marginLeft: 9
-  },
-  cellIcon: {
-    color: 'lightgray',
-    height: 12,
-    width: 12,
-    marginRight: 12
-  }
-});
 
 module.exports = TableView

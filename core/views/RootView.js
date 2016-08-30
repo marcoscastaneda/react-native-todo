@@ -6,9 +6,10 @@ import {
   Text
 } from 'react-native';
 
-
 import ActionButton from './ActionButton'
 import TableView from './TableView'
+
+const styles = require('../styles.js')
 
 class RootView extends Component {
 
@@ -27,17 +28,5 @@ class RootView extends Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fafafa',
-  },
-  tableView: {
-    backgroundColor: 'blue',
-    flexDirection: 'column'
-  }
-});
 
 module.exports = RootView
