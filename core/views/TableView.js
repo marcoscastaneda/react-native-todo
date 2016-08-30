@@ -10,7 +10,7 @@ import {
   Text
 } from 'react-native';
 
-const mockData = [
+var mockData = [
   {firstName: "John"},
   {firstName: "Lorem"},
   {firstName: "Ipsum"},
@@ -21,10 +21,14 @@ class TableView extends Component {
 
   // On cell touch
   _rowDidTouch(data) {
-    data.firstName = data.firstName + '?';
 
-    alert("hi" + data);
-    console.log('Tapped on cell', data)
+    var w = [{firstName: 'peter'}]
+    this.state.dataSource.cloneWithRows(w);
+
+    console.log(mockData)
+
+    console.log(this.state.dataSource)
+    console.log(this.refs.listView)
   }
 
   constructor(props) {
@@ -98,6 +102,5 @@ const styles = StyleSheet.create({
     marginRight: 12
   }
 });
-
 
 module.exports = TableView
