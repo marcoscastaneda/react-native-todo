@@ -5,49 +5,41 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
-  ListView,
   RecyclerViewBackedScrollView,
   Text
 } from 'react-native';
+import { ListView } from 'realm/react-native';
+import styles from '../styles.js'
 
-const styles = require('../styles.js')
-
-var mockData = [
-  {firstName: "John"},
-  {firstName: "Lorem"},
-  {firstName: "Ipsum"},
-  {firstName: "Doe"},
-  {firstName: "Dell"},
-  {firstName: "Casey"},
-  {firstName: "Dan"},
-  {firstName: "Rob"},
-];
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class TableView extends Component {
 
   // On cell touch
   _rowDidTouch(data) {
+    console.log(this.props.data)
 
-    var w = [{firstName: 'peter'}]
-    this.state.dataSource.cloneWithRows(w);
+    this.props.realm.write(() => {
+      this.props.realm.create('Todos', {name: 'Test', done: false});
+    })
 
-    console.log(mockData)
+    this.state = {
+      dataSource: ds.cloneWithRows(this.props.data)
+    }
 
-    console.log(this.state.dataSource)
-    console.log(this.refs.listView)
+    this.forceUpdate()
   }
 
   constructor(props) {
     super(props)
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
     this.state = {
-      dataSource: ds.cloneWithRows(mockData)
+      dataSource: ds.cloneWithRows(this.props.data)
     }
   }
 
   render() {
+    console.log("this data = ", this.state)
     return (
       <ListView
         ref="listView"
@@ -63,10 +55,11 @@ class TableView extends Component {
   }
 
   _renderRow(cell) {
+    console.log("RENDER")
     return (
       <TouchableOpacity style={styles.cell} onPress={(event) => this._rowDidTouch(cell) }>
         <Text style={styles.cellTitle}>
-          {cell.firstName}
+          {cell.name}
         </Text>
         <View style={{flex: 1}} />
         <Text name="chevron-right" size={12} style={styles.cellIcon} />
@@ -85,6 +78,7 @@ class TableView extends Component {
      />
    );
   }
+
 }
 
 module.exports = TableView

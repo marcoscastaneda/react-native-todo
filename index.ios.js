@@ -4,7 +4,7 @@ import {
  StyleSheet,
  NavigatorIOS
 } from 'react-native';
-
+import Realm from 'realm'
 import RootView from './core/views/RootView'
 import AddItemView from './core/views/AddItemView'
 
@@ -13,6 +13,12 @@ class ReactTodo extends Component {
   constructor(props) {
     super(props)
     this._handleAddButtonPress = this._handleAddButtonPress.bind(this);
+
+    this.state = {
+      realm: new Realm({
+        schema: [{name: 'Todos', properties: {name: 'string', done: 'bool'}}]
+      })
+    }
   }
 
   _handleAddButtonPress() {
@@ -32,19 +38,23 @@ class ReactTodo extends Component {
         initialRoute={{
           title: 'React Todos',
           component: RootView,
-          leftButtonTitle: 'Edit',
+          passProps: {realm: this.state.realm},
+          leftButtonTitle: 'Delete',
           barTintColor: '#FFF',
-          tintColor: '#cd9aaa',
+          // tintColor: '',
           shadowHidden: false,
           titleTextColor: '#c92c5e',
           onLeftButtonPress: () => {
-            this.refs.nav.navigator.push({
-                           title: "Add Item",
-                           component: AddItemView,
-                           leftButtonTitle: 'Close',
-                           onLeftButtonPress: () => {this.refs.nav.navigator.pop();}
-                         });
-          }
+            this.state.realm.write(() => {
+              this.state.realm.delete(this.state.realm.objects('Todos'))
+          })
+        }
+            // this.refs.nav.navigator.push({
+            //                title: "Add Item",
+            //                component: AddItemView,
+            //                leftButtonTitle: 'Close',
+            //                onLeftButtonPress: () => {this.refs.nav.navigator.pop();}
+            //              });
         }} />
     );
   }

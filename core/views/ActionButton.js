@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import ReactNative from 'react-native';
-const { StyleSheet, Text, View, TouchableHighlight} = ReactNative;
-
-const styles = require('../styles.js')
+import {StyleSheet, Text, View, TouchableHighlight} from 'react-native';
+import styles from '../styles.js'
 
 class ActionButton extends Component {
   render() {

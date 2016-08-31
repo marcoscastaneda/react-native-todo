@@ -5,23 +5,24 @@ import {
   TextInput,
   Text
 } from 'react-native';
-
+import Realm from 'realm'
+import styles from '../styles.js'
 import ActionButton from './ActionButton'
 import TableView from './TableView'
-
-const styles = require('../styles.js')
 
 class RootView extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+
+    console.log("RV props = ", this.props)
+
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TableView style={styles.tableView}/>
+        <TableView data={this.props.realm.objects('Todos')} realm={this.props.realm} style={styles.tableView} />
         <ActionButton title="Add" onPress={() => console.log('add') }/>
       </View>
     )
